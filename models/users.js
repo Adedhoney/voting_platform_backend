@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         user_email: {
             type: DataTypes.STRING(100),
             allowNull: false,
+            uniqueKey: true,
         },
         user_department: {
             type: DataTypes.STRING(100),
@@ -24,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         user_level: {
             type: DataTypes.STRING(20),
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
         vote_status: {

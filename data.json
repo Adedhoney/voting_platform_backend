@@ -1,0 +1,22 @@
+{
+    "loginData": {
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "query": {
+            "email": "bla bla bla",
+            "password": "************"
+        }
+    },
+    "loginReturnData": {
+        "accessToken": "jwToken"
+    },
+
+    "votingData": {
+        "headers": {
+            "Content-Type": "application/json",
+            "authorization": "Basic accessToken"
+        },
+        "body": {}
+    }
+}
