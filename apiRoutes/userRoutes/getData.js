@@ -5,8 +5,12 @@ module.exports.getUserData = async (req, res) => {
     res.json(userData)
 }
 module.exports.getElectionData = async (req, res) => {
-    const electionInfo = await db.candidate.findAll({
+    const positions = await db.position.findAll()
+    const candidateInfo = await db.candidate.findAll({
         include: db.position,
     })
-    res.json(electionInfo)
+    res.json({
+        positions: [...positions],
+        candidates: [...candidateInfo],
+    })
 }

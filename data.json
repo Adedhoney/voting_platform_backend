@@ -30,9 +30,17 @@
             "authorization": "Basic Your_jwToken"
         }
     },
-    "Response -- getElectionData": [
-        { "candidateInfo": "list of candidates including their positions " }
-    ],
+    "Response -- getElectionData": {
+        "positions": [
+            { "positionId": "list of position Id" },
+            { "positionName": "corresponding position name" }
+        ],
+        "candidates": [
+            {
+                "candidateInfo": "list of candidates information including their positions "
+            }
+        ]
+    },
 
     "votingData": {
         "headers": {

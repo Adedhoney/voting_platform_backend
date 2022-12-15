@@ -20,6 +20,14 @@ module.exports.castVote = async (req, res) => {
                 user_id: req.userId,
             })
         }
+
+        // Update user to show they have voted
+        await db.user.update(
+            { vote_status: 1 },
+            {
+                where: { user_id: req.userId },
+            }
+        )
         return res.status(201).json({ message: "Vote cast successfully" })
     } catch {
         return res
