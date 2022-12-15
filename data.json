@@ -8,15 +8,48 @@
             "password": "************"
         }
     },
-    "loginReturnData": {
-        "accessToken": "jwToken"
+    "Response -- loginData": {
+        "accessToken": "Your_jwToken"
     },
+
+    "getUserData": {
+        "headers": {
+            "Content-Type": "application/json",
+            "authorization": "Basic Your_jwToken"
+        }
+    },
+    "Response -- getUserData": {
+        "username": "ttheir names",
+        "id": "thier ids",
+        "matricNO": "and every other information we have"
+    },
+
+    "getElectionData": {
+        "headers": {
+            "Content-Type": "application/json",
+            "authorization": "Basic Your_jwToken"
+        }
+    },
+    "Response -- getElectionData": [
+        { "candidateInfo": "list of candidates including their positions " }
+    ],
 
     "votingData": {
         "headers": {
             "Content-Type": "application/json",
-            "authorization": "Basic accessToken"
+            "authorization": "Basic Your_jwToken"
         },
-        "body": {}
+        "body": {
+            "votes": [
+                {
+                    "candidateId": "candidate's id",
+                    "positionId": "candidate's position id for selected candidate."
+                },
+                {
+                    "candidateId": "candidate's id for second position.",
+                    "positionId": "candidate's position id for selected candidate."
+                }
+            ]
+        }
     }
 }

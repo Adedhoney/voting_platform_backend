@@ -1,6 +1,6 @@
 const db = require("../../models")
 
-module.exports.getUserDate = async (req, res) => {
+module.exports.getUserData = async (req, res) => {
     const userData = await db.user.findByPk(req.userId)
     res.json(userData)
 }

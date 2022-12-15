@@ -17,6 +17,6 @@ app.get("/", (req, res) => res.json("Testing the endpoint"))
 app.use("/user", userRoutes)
 // app.use("/admin", adminRoutes)
 
-db.sequelize.sync({ alter: true }).then(() => {
+db.sequelize.sync().then(() => {
     http.listen(PORT, () => console.log(`This server is on port ${PORT}`))
 })

@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             references: { model: "candidates", Key: "candidate_id" },
         },
+        position_id: {
+            type: DataTypes.UUID,
+            allowNull: false,
+            references: { model: "positions", Key: "position_id" },
+        },
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -23,7 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         })
         votes.belongsTo(models.user, {
             foreignKey: "user_id",
-        })
+        }),
+            votes.belongsTo(models.position, {
+                foreignKey: "position_id",
+            })
     }
     return votes
 }
