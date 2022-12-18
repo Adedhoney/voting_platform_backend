@@ -1,8 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const users = sequelize.define("user", {
         user_id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.STRING(20),
             allowNull: false,
             primaryKey: true,
         },
@@ -17,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         user_department: {
             type: DataTypes.STRING(100),
-            allowNull: false,
-        },
-        user_matric: {
-            type: DataTypes.STRING(20),
             allowNull: false,
         },
         user_level: {

@@ -9,12 +9,13 @@ module.exports = (sequelize, DataTypes) => {
         position_name: {
             type: DataTypes.STRING(100),
             allowNull: false,
+            uniqueKey: true,
         },
-    });
+    })
     positions.associate = (models) => {
         positions.hasMany(models.candidate, {
             foreignKey: "position_id",
-        });
-    };
-    return positions;
-};
+        })
+    }
+    return positions
+}

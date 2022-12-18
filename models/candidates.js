@@ -2,8 +2,14 @@ module.exports = (sequelize, DataTypes) => {
     const candidates = sequelize.define("candidate", {
         candidate_id: {
             type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
+        },
+        candidate_matric: {
+            type: DataTypes.STRING(20),
+            allowNull: false,
+            uniqueKey: true,
         },
         candidate_name: {
             type: DataTypes.STRING(100),
