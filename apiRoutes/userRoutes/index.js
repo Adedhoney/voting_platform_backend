@@ -8,7 +8,6 @@ const { castVote } = require("./vote")
 // console.log(authorize)
 
 router.get("/login", logIn)
-
 router.get("/getUserData", authorize, getUserData)
 
 router.get("/getElectionData", authorize, getElectionData)
