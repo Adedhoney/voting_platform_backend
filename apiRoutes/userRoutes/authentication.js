@@ -7,10 +7,10 @@ const jwt = require("jsonwebtoken")
 module.exports.logIn = async (req, res) => {
     const loginDetails = await db.user.findOne({
         where: {
-            email: req.query.email,
+            user_email: req.query.email,
         },
     })
-    console.log(logindetails)
+    console.log(loginDetails)
     if (!loginDetails) {
         return res.status(401).json({ message: "User not found" })
     }
@@ -18,7 +18,7 @@ module.exports.logIn = async (req, res) => {
         req.query.password,
         loginDetails.password
     )
-    if (!correct_Password) {
+    if (!correctPassword) {
         return res.status(402).json({ message: "Incorrect Password" })
     }
 

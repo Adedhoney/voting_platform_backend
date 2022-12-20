@@ -10,23 +10,26 @@ const addPosition = async (req, res) => {
             where: { position_name: req.body.positionName },
         })
         if (positionExists) {
-            return res.status(410).json({ message: "Position Already Added" })
+            return res.status(510).json({ message: "Position Already Added" })
         }
         await db.position.create({
             position_name: req.body.positionName,
         })
+        return res.status(201).json({ message: "Position Added successfully" })
     } catch (error) {
         return res
             .status(501)
-            .json({ message: "Error occured when add position" })
+            .json({ message: "Error occured when adding position" })
     }
 }
 
 const addCandidate = async (req, res) => {
     try {
+        console.log(1)
         let candidateExists = await db.candidate.findOne({
             where: { candidate_matric: req.body.candidateMatric },
         })
+        console.log(2)
         if (candidateExists) {
             return res.status(410).json({ message: "Candidate Already Added" })
         }
@@ -38,6 +41,7 @@ const addCandidate = async (req, res) => {
             running_position: req.body.runningPosition,
             picture: req.body.picture,
         })
+        return res.status(201).json({ message: "Candidate Added successfully" })
     } catch (error) {
         return res
             .status(501)
@@ -68,26 +72,27 @@ const uploadUsers = async (req, res) => {
         }
 
         // create user json
-        const userJson = (rows) => {
+        const userJson = async (rows) => {
             let userJsons = []
             for (let row of rows) {
+                let hashedPassword = await bcrypt.hash(row[5].toString(), 10)
                 let userInfo = {
                     user_id: row[0],
                     user_name: row[1],
                     user_email: row[2],
                     user_department: row[3],
                     user_level: row[4],
-                    password: row[5],
+                    password: hashedPassword,
                 }
                 userJsons.push(userInfo)
             }
             return userJsons
         }
 
-        const usersData = userJson(rows)
+        const usersData = await userJson(rows)
         saveToDB(usersData)
     } catch (error) {
-        return res.status(401).json({ message: "error while uploading file" })
+        return res.status(501).json({ message: "error while uploading file" })
     }
 }
 
