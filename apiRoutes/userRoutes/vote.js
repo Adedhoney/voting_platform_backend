@@ -3,8 +3,14 @@ const db = require("../../models")
 module.exports.castVote = async (req, res) => {
     try {
         let votes = req.body.votes
+        // Check user vote status
+        let userInfo = await db.user.findByPk(req.userId)
+        if (userInfo.vote_status == 1) {
+            return res.status(506).json({ message: "User already voted" })
+        }
 
         for (let vote of votes) {
+            //check duplicate vote
             let alreadyVoted = await db.vote.findOne({
                 where: {
                     user_id: req.userId,
@@ -12,7 +18,7 @@ module.exports.castVote = async (req, res) => {
                 },
             })
             if (alreadyVoted) {
-                return res.status(406).json({ message: "User already voted" })
+                return res.status(506).json({ message: "User already voted" })
             }
             await db.vote.create({
                 candidate_id: vote.candidateId,
@@ -31,7 +37,7 @@ module.exports.castVote = async (req, res) => {
         return res.status(201).json({ message: "Vote cast successfully" })
     } catch {
         return res
-            .status(408)
+            .status(508)
             .json({ message: "Error occured when casting vote" })
     }
 }
