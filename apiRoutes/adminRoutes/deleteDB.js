@@ -4,6 +4,7 @@ const deletePosition = async (req, res) => {
     try {
         let des = await db.position.destroy({
             where: { position_id: req.body.positionId },
+            cascade: true,
         })
         return res
             .status(201)

@@ -10,8 +10,8 @@ router.post("/addposition", addPosition)
 router.get("/getOverview", getOverview)
 router.post("/addcandidate", addCandidate)
 
-router.delete("/deleteCandidate", deleteCandidate)
-router.delete("/deletePosition", deletePosition)
+router.post("/deleteCandidate", deleteCandidate)
+router.post("/deletePosition", deletePosition)
 router.delete("/deleteElection", clearDatabase)
 
 module.exports = router
