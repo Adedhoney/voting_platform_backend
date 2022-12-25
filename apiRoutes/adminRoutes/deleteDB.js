@@ -1,4 +1,5 @@
 const db = require("../../models")
+const { Op } = require("sequelize")
 
 const deletePosition = async (req, res) => {
     try {
@@ -31,16 +32,31 @@ const deleteCandidate = async (req, res) => {
 }
 const clearDatabase = async (req, res) => {
     try {
-        let des = await db.position.destroy({
-            truncate: true,
+        await db.vote.destroy({
+            where: {
+                vote_id: { [Op.ne]: 0 },
+            },
         })
-        let troy = await db.user.destroy({
-            truncate: true,
+        await db.candidate.destroy({
+            where: {
+                candidate_id: { [Op.ne]: 0 },
+            },
+        })
+        await db.position.destroy({
+            where: {
+                position_id: { [Op.ne]: 0 },
+            },
+        })
+        await db.user.destroy({
+            where: {
+                user_id: { [Op.ne]: 0 },
+            },
         })
         return res
             .status(201)
             .json({ message: "Database cleared successfully" })
     } catch (error) {
+        console.log(error)
         return res
             .status(501)
             .json({ message: "Error while clearing database" })

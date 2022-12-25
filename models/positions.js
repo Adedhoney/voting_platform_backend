@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     positions.associate = (models) => {
         positions.hasMany(models.candidate, {
             foreignKey: "running_position",
+            onDelete: "CASCADE",
         })
     }
     return positions

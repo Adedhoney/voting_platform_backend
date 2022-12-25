@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         })
         candidates.hasMany(models.vote, {
             foreignKey: "candidate_id",
+            onDelete: "CASCADE",
         })
     }
     return candidates

@@ -22,6 +22,6 @@ module.exports.logIn = async (req, res) => {
         const jwToken = jwt.sign(loginDetails.user_id, process.env.Access_Token)
         res.json({ accessToken: jwToken })
     } catch (error) {
-        res.status(401).json({ message: "Error while logging in" })
+        res.status(403).json({ message: "Error while logging in" })
     }
 }

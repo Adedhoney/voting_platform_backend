@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     users.associate = (models) => {
         users.hasMany(models.vote, {
             foreignKey: "user_id",
+            onDelete: "CASCADE",
         })
     }
     return users
