@@ -1,6 +1,5 @@
 const db = require("../../models")
 const bcrypt = require("bcrypt")
-const crypto = require("crypto")
 const dotenv = require("dotenv")
 const jwt = require("jsonwebtoken")
 
