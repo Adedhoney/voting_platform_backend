@@ -22,7 +22,6 @@ let storage = multer.diskStorage({
         cb(null, folderPath)
     },
     filename: (req, file, cb) => {
-        console.log(file.originalname)
         cb(null, `${Date.now()}-UserFile-${file.originalname}`)
     },
 })

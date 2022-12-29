@@ -6,7 +6,7 @@ module.exports.castVote = async (req, res) => {
         // Check user vote status
         let userInfo = await db.user.findByPk(req.userId)
         if (userInfo.vote_status == 1) {
-            return res.status(506).json({ message: "User already voted" })
+            return res.status(400).json({ message: "User already voted" })
         }
 
         for (let vote of votes) {
@@ -18,7 +18,7 @@ module.exports.castVote = async (req, res) => {
                 },
             })
             if (alreadyVoted) {
-                return res.status(506).json({ message: "User already voted" })
+                return res.status(400).json({ message: "User already voted" })
             }
             await db.vote.create({
                 candidate_id: vote.candidateId,
@@ -37,7 +37,7 @@ module.exports.castVote = async (req, res) => {
         return res.status(201).json({ message: "Vote cast successfully" })
     } catch {
         return res
-            .status(508)
+            .status(500)
             .json({ message: "Error occured when casting vote" })
     }
 }
