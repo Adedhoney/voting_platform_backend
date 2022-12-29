@@ -32,26 +32,7 @@ const deleteCandidate = async (req, res) => {
 }
 const clearDatabase = async (req, res) => {
     try {
-        await db.vote.destroy({
-            where: {
-                vote_id: { [Op.ne]: 0 },
-            },
-        })
-        await db.candidate.destroy({
-            where: {
-                candidate_id: { [Op.ne]: 0 },
-            },
-        })
-        await db.position.destroy({
-            where: {
-                position_id: { [Op.ne]: 0 },
-            },
-        })
-        await db.user.destroy({
-            where: {
-                user_id: { [Op.ne]: 0 },
-            },
-        })
+        await db.sequelize.sync({ force: true })
         return res
             .status(201)
             .json({ message: "Database cleared successfully" })

@@ -61,10 +61,14 @@ const uploadUsers = async (req, res) => {
 
         const saveToDB = async (users) => {
             try {
-                await db.user.bulkCreate(users)
+                console.log(users)
+                await db.user.bulkCreate(users, {
+                    ignoreDuplicates: true,
+                })
 
                 return res.status(201).json({ message: "Upload successful" })
-            } catch {
+            } catch (error) {
+                console.log(error)
                 return res
                     .status(501)
                     .json({ message: "Failed to add to database" })
