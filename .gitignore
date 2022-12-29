@@ -1,3 +1,6 @@
+.vscode/
+uploadedFiles/
 /node_modules
 /.env
 /uploadedFiles
+/vscode
