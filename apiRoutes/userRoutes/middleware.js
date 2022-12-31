@@ -8,7 +8,7 @@ module.exports.authorize = (req, res, next) => {
 
     require("dotenv").config()
 
-    jwt.verify(accessToken, process.env.Access_Token, (err, userId) => {
+    jwt.verify(accessToken, process.env.User_Access_Token, (err, userId) => {
         if (err) {
             return res.status(401).json({ message: "Unauthorized" })
         } // fgf

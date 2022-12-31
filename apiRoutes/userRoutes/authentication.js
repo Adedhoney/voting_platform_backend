@@ -18,7 +18,10 @@ module.exports.logIn = async (req, res) => {
         }
 
         dotenv.config()
-        const jwToken = jwt.sign(loginDetails.user_id, process.env.Access_Token)
+        const jwToken = jwt.sign(
+            loginDetails.user_id,
+            process.env.User_Access_Token
+        )
         res.json({ accessToken: jwToken })
     } catch (error) {
         res.status(500).json({ message: "Error while logging in" })
