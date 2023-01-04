@@ -6,7 +6,7 @@ const io = require("socket.io")(http, { cors: { origin: "*" } })
 //const socketConnections = require("./apiroute/socketConnections")(io)
 
 const db = require("./models")
-const PORT = 4000
+const PORT = process.env.PORT || 4000
 const userRoutes = require("./apiRoutes/userRoutes")
 const adminRoutes = require("./apiRoutes/adminRoutes")
 
