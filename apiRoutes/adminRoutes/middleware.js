@@ -17,6 +17,7 @@ module.exports.authorize = (req, res, next) => {
         process.env.Admin_Access_Token,
         (err, accessCode) => {
             if (err) {
+                console.log(err)
                 return res.status(410).json({ message: "Unauthorized" })
             } // fgf
             ;(() => {
