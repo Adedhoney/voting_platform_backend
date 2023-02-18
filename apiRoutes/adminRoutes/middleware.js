@@ -20,7 +20,7 @@ module.exports.authorize = (req, res, next) => {
                 return res.status(410).json({ message: "Unauthorized" })
             } // fgf
             ;(() => {
-                const hasAccess = accessCode === process.env.Admin_Access_Code
+                const hasAccess = accessCode == process.env.Admin_Access_Code
                 if (!hasAccess)
                     return res.status(410).json({ message: "Unauthorized" })
 
