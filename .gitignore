@@ -4,3 +4,4 @@ uploadedFiles/
 /.env
 /uploadedFiles
 /vscode
+/package-lock.json
